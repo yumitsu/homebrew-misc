@@ -1,7 +1,10 @@
 class Telegram < Formula
+  desc "Command-line interface for Telegram"
   homepage "https://github.com/vysheng/tg"
   url "https://github.com/vysheng/tg/archive/1.0.5.1.tar.gz"
-  sha1 "72f6a9f89ee9db90b573bad25e567a2015115848"
+  sha256 "5a78fd46e978ff450eda6f4664499042dddf053f4fe233fe3157499869646fb8"
+
+  head "https://github.com/vysheng/tg.git"
 
   depends_on "openssl"
   depends_on "libevent"
@@ -12,8 +15,8 @@ class Telegram < Formula
   patch :DATA
 
   def install
-    #ENV.append "CFLAGS", "-I#{Formula["readline"].prefix}/include"
-    #ENV.append "LDFLAGS", "-L#{Formula["readline"].prefix}/lib"
+    ENV.append "CFLAGS", "-I#{Formula["readline"].opt_include}"
+    ENV.append "LDFLAGS", "-L#{Formula["readline"].opt_lib}"
 
     system "./configure", "--prefix=#{prefix}"
     system "make"
@@ -23,7 +26,7 @@ class Telegram < Formula
   end
 
   test do
-    (testpath/'tg.txt').write <<-EOS.undent
+    (testpath/"tg.txt").write <<-EOS.undent
       #
       not a phone number
       #
