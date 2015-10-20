@@ -17,11 +17,12 @@ matrix:
 before_install:
   - export TAP_DIR="$(brew --prefix)/Library/Taps/$TRAVIS_REPO_SLUG"
   - export TAP_NAME=${TRAVIS_REPO_SLUG/'homebrew-'/''}
+  - test -z $GIT_URL && (export GIT_URL="https://github.com/$TRAVIS_REPO_SLUG)
   - brew update
   - sudo mkdir -p $TAP_DIR
   - sudo rsync -az "$TRAVIS_BUILD_DIR/" $TAP_DIR/
   - sudo chown -R $USER /usr/local
-  - env | grep TRAVIS_
+  - env | grep -E 'TRAVIS_|GIT_'
   - cd $TAP_DIR
   - git reset --hard $TRAVIS_COMMIT
   - git clean -qxdff
@@ -29,7 +30,8 @@ before_install:
   - brew tap
 
 script:
-  - brew test-bot --tap=$TAP_NAME --verbose
+#  - brew test-bot --tap=$TAP_NAME --verbose
+  - brew test-bot --verbose
 
 notifications:
   email: false
