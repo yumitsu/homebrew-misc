@@ -10,14 +10,6 @@ class Watch < Formula
   option "with-watch8bit", "Enable watch to be 8bit clean (requires ncurses)"
   option "with-nls", "Enable Native Language Support"
 
-  bottle do
-    cellar :any_skip_relocation
-    sha256 "c0d123fb9d979422d41d6c63dcea1b87732d354276b7bdecb4dc5a89c7390ca6" => :el_capitan
-    sha1 "02dd29b9894a881d150ae369a0bd7e6c38517158" => :yosemite
-    sha1 "4c879fbcd46a9867ec7a322ddbb466cb0a376825" => :mavericks
-    sha1 "a7c559378bc74cd30d00f962e63d6ee5c705aea1" => :mountain_lion
-  end
-
   depends_on "gettext" => :build
   depends_on "autoconf" => :build
   depends_on "automake" => :build
@@ -29,7 +21,7 @@ class Watch < Formula
 
   def install
     args = ["--prefix=#{prefix}",
-            "--disable-dependency-tracking"]
+            "--disable-dependency-tracking",]
 
     make_args = ["LDADD="]
 
