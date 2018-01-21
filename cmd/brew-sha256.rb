@@ -14,6 +14,7 @@ module BrewSHA256
         require 'formula'
       else
         puts "Not running in homebrew env"
+        exit(1)
       end
     end
 
