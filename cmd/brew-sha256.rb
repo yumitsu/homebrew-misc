@@ -3,6 +3,10 @@
 require 'digest'
 require 'open-uri'
 
+###
+# Computes SHA256 hash of local/remote file (http/https only) or hash of
+# Homebrew's formula stable tarball.
+###
 module BrewSHA256
   class << self
     def homebrew!
@@ -39,7 +43,7 @@ module BrewSHA256
       if defined?(Formula)
         Formula[name]
       else
-        puts "No such package exist - '#{name}'"
+        puts "No such package - '#{name}'"
         exit(1)
       end
     end
