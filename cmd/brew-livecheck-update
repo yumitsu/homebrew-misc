@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+if [ ! -z "$HOMEBREW_LIVECHECK_WATCHLIST" ]
+then
+    WATCHLIST_FILE=$HOMEBREW_LIVECHECK_WATCHLIST
+else
+    WATCHLIST_FILE="$HOME/.brew_livecheck_watchlist"
+fi
+
+if [ ! -w "$WATCHLIST_FILE" ]
+then
+    printf "Watchlist file '%s' is missing or not writable.\\n" "$WATCHLIST_FILE"
+    if test -f "$WATCHLIST_FILE"
+    then
+        chmod +w "$WATCHLIST_FILE"
+        echo "Set watchlist file mode to '+w'."
+    else
+        touch "$WATCHLIST_FILE"
+        echo "Created new watchlist file."
+    fi
+fi
+
+INSTALLED_LIST=$(brew list | sed 's/\s+/\n/g')
+INSTALLED_COUNT=$(printf "%s\\n" "$INSTALLED_LIST" | grep -c -E '^\w+$')
+
+if [ ! -z "$INSTALLED_LIST" ]
+then
+    printf "Updating watchlist file with %s package(s)... " "$INSTALLED_COUNT"
+    printf "%s\\n" "$INSTALLED_LIST" > "$WATCHLIST_FILE"
+    echo "Done!"
+else
+    echo "No packages installed, exiting."
+fi
