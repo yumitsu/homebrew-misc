@@ -4,13 +4,13 @@ class Jtool2 < Formula
   url "http://www.newosxbook.com/tools/jtool2.tgz"
   version "2.0"
   sha256 "63850d1efb466a9a1f968ba5c1355fbc5640316f1bee61752ad1dff2fb285b2c"
-  revision 2
+  revision 3
 
   def install
     bin.mkpath
     rm "jtool2.ELF64"
-    system "install", "-s", "jtool2", "#{prefix}/bin"
-    system "install", "-s", "disarm", "#{prefix}/bin"
+    system "install", "-S", "jtool2", "#{prefix}/bin"
+    system "install", "-S", "disarm", "#{prefix}/bin"
     info.install "matchers.txt"
   end
 
