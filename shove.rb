@@ -11,7 +11,9 @@ class Shove < Formula
 
   def install
     bin.mkpath
+    lib.mkpath
     bin.install "bin/shove"
+    lib.install "lib/shove.bashrc", "lib/shove/"
   end
 
   test do

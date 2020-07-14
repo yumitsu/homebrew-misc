@@ -1,5 +1,5 @@
 class Jtool2 < Formula
-B  desc "Drop in replacement for otool, nm, strings, and segedit"
+  desc "Drop in replacement for otool, nm, strings, and segedit"
   homepage "http://www.newosxbook.com/tools/jtool.html"
   url "http://www.newosxbook.com/tools/jtool2.tgz"
   version "2.0"
