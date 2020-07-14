@@ -10,10 +10,6 @@ class Drive < Formula
     sha256 "ce7e4dd994c01d4534251c9a31adca34ed89ff6e64045813a7ce5c588ddd04be"
   end
 
-  devel do
-    url "https://github.com/odeke-em/drive.git", :tag => "v0.3.9.1"
-  end
-
   depends_on "go"  => :build
   depends_on "dep" => :build
 
