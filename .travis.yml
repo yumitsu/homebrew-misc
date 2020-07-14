@@ -35,7 +35,7 @@ before_install:
   - brew tap
 
 script:
-  - brew test-bot --tap=$TAP_NAME --verbose --skip-setup --only-formulae --local
+  - brew test-bot --tap=$TAP_NAME --verbose --skip-setup --only-formulae
 
 notifications:
   email: false
