@@ -1,18 +1,23 @@
 language: objective-c
-matrix:
+jobs:
   include:
-    - env: OSX=10.11
+    - env: OSX=10.13
       os: osx
-      osx_image: osx10.11
-      rvm: system
-    - env: OSX=10.10
+      osx_image: xcode10.1
+      rvm: 2.6.3
+    - env: OSX=10.14.6
       os: osx
-      osx_image: xcode7
-      rvm: system
-    - env: OSX=10.9
+      osx_image: xcode11.3
+      rvm: 2.6.3
+    - env: OSX=10.15.5
       os: osx
-      osx_image: beta-xcode6.2
-      rvm: system
+      osx_image: xcode12
+      rvm: 2.6.3
+
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
+    - /usr/local/Homebrew
 
 before_install:
   - export TAP_DIR="$(brew --prefix)/Library/Taps/$TRAVIS_REPO_SLUG"
@@ -21,7 +26,7 @@ before_install:
   - brew update
   - sudo mkdir -p $TAP_DIR
   - sudo rsync -az "$TRAVIS_BUILD_DIR/" $TAP_DIR/
-  - sudo chown -R $USER /usr/local
+  - sudo chown -R $USER $(brew --cellar) $(brew --repository)
   - env | grep -E 'TRAVIS_|GIT_'
   - cd $TAP_DIR
   - git reset --hard $TRAVIS_COMMIT
@@ -30,7 +35,7 @@ before_install:
   - brew tap
 
 script:
-  - brew test-bot --tap=$TAP_NAME --verbose
+  - brew test-bot --tap=$TAP_NAME --verbose --skip-setup --only-formulae --local
 
 notifications:
   email: false
