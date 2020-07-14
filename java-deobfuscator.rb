@@ -1,16 +1,17 @@
 class JavaDeobfuscator < Formula
   desc "Tool aimed to deobfuscate most available obfuscators for Java"
   homepage "https://github.com/java-deobfuscator/deobfuscator"
-  url "https://ci.samczsun.com/job/java-deobfuscator/job/Deobfuscator/lastSuccessfulBuild/artifact/target/deobfuscator-1.0.0.jar"
-  sha256 "27d3da75c5398d7eeb8e1790c0dcef99c47a506caece26ceef95646028f6db08"
+  url "https://ci.samczsun.com/job/java-deobfuscator/job/Deobfuscator/51/artifact/target/deobfuscator-1.0.0.jar"
+  version "1.0.0-build51"
+  sha256 "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
   bottle :unneeded
 
   depends_on :java => "1.7+"
 
   def install
-    libexec.install "deobfuscator-#{version}.jar"
-    bin.write_jar_script libexec/"deobfuscator-#{version}.jar", "java-deobfuscator"
+    libexec.install "deobfuscator-1.0.0.jar"
+    bin.write_jar_script libexec/"deobfuscator-1.0.0.jar", "java-deobfuscator"
   end
 
   test do
